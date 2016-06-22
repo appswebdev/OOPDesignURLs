@@ -16,18 +16,18 @@ public class MainActivity extends AppCompatActivity implements OnWeatherChangedL
         ivTemp = (ImageView) findViewById(R.id.ivTemp);
         ivTemp = (ImageView) findViewById(R.id.ivTemp);
 
-        WhetherStation station = new WhetherStation();
+        WhetherStation station = WhetherStation.getSharedInstance();
         station.addListener(this);
 
 
     }
 
     @Override
-    public void onWeatherChanged(final String temp) {
+    public void onWeatherChanged(final Weather weather) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                tvWhether.setText(temp + "Deg");
+                tvWhether.setText(weather.getTemp() + "Deg");
             }
         });
 
